@@ -93,4 +93,5 @@ def eval_whole(k=100,query='the crystalline lens in vertebrates, including human
 
         scores = predict(query, docuss, lsi_model_saved[0], lgb_ranker_lsi_saved[0])
         sorted_did_scores = explain_score(query, docuss, scores)
+        
         return sorted_did_scores
