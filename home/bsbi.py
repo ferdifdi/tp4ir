@@ -2,15 +2,18 @@ import os
 import pickle
 import contextlib
 import heapq
-import time
 import math
 
 from .index import InvertedIndexReader, InvertedIndexWriter
 from .util import IdMap, sorted_merge_posts_and_tfs
-from .compression import StandardPostings, VBEPostings
+from .compression import VBEPostings
 from tqdm import tqdm
 import nltk
 import re
+
+nltk.download('stopwords')
+nltk.download('punkt')
+
 
 class BSBIIndex:
     """
