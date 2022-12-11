@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import sys
 import os
-from .letor import eval_whole
+from .myModel import eval_whole
 from datetime import datetime
 
 # Create your views here.
