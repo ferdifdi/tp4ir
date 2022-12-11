@@ -74,8 +74,8 @@ def eval_whole(k=100,query='the crystalline lens in vertebrates, including human
 
    
     for (_, doc) in BSBI_instance.retrieve_bm25(query, k = k):
-        d = doc.replace("\\", "/").split("collection")[1][1:]
-        list_of_docs.append(d)
+        # d = doc.replace("\\", "/").split("collection")[1][1:]
+        list_of_docs.append(r""+os.path.dirname(__file__) +"/collection/" + str(doc))
 
     if len(list_of_docs) < 1:
         return None
