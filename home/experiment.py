@@ -127,7 +127,7 @@ def eval(qrels, query_file = "queries.txt", k = 1000):
       # yang tertera di qrels
       ranking = []
       for (score, doc) in BSBI_instance.retrieve_bm25(query, k = k):
-          did = int(doc.split("\\")[-1].split(".")[0])
+          did = int(doc.split("/")[-1].split(".")[0])
           ranking.append(qrels[qid][did])
       rbp_scores.append(rbp(ranking))
       dcg_scores.append(dcg(ranking))

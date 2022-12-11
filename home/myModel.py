@@ -84,7 +84,7 @@ def eval_whole(k=100,query='the crystalline lens in vertebrates, including human
         for i in list_of_docs:
             with open(i, "r") as f:
                 all_of_it= f.read()
-                temp = int(i.split("\\")[-1].replace(".txt",""))
+                temp = int(i.split("/")[-1].replace(".txt",""))
                 docss_id.append(temp)
                 docss.append(all_of_it)  
 
