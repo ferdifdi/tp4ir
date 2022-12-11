@@ -70,21 +70,27 @@ def eval_whole(k=100,query='the crystalline lens in vertebrates, including human
     docss = []
     docss_id = []
 
-    try:
-        for (_, doc) in BSBI_instance.retrieve_bm25(query, k = k):
-            list_of_docs.append(r""+os.path.dirname(__file__) +"\\collection\\" + str(doc))
+    
+
+   
+    for (_, doc) in BSBI_instance.retrieve_bm25(query, k = k):
+        list_of_docs.append(r""+os.path.dirname(__file__) +"\\collection\\" + str(doc))
+
+    if len(list_of_docs) < 1:
+        return None
+    else:  
+
         for i in list_of_docs:
             with open(i, "r") as f:
                 all_of_it= f.read()
                 temp = int(i.split("\\")[-1].replace(".txt",""))
                 docss_id.append(temp)
-                docss.append(all_of_it)    
+                docss.append(all_of_it)  
+
+        
 
         docuss = list(zip(docss_id, docss))
 
         scores = predict(query, docuss, lsi_model_saved[0], lgb_ranker_lsi_saved[0])
         sorted_did_scores = explain_score(query, docuss, scores)
         return sorted_did_scores
-
-    except Exception as e:
-        return None
