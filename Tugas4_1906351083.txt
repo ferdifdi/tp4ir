@@ -1,2 +1,2 @@
 https://github.com/ferdifdi/tp4ir (repo)
-https://tp4ir.herokuapp.com/ (web)
+https://web-production-3cb4.up.railway.app/ (web)
