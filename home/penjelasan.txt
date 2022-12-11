@@ -1,0 +1,32 @@
+# Ranking pada SERP
+
+    # sekedar pembanding, ada bocoran: D3 & D5 relevant, D1 & D4 partially relevant, D2 tidak relevan
+    # apakah LambdaMART berhasil merefleksikan hal ini? YA
+
+letor
+query        : how much cancer risk can be avoided through lifestyle change ?
+SERP/Ranking :
+D5 0.4722681704665942
+D1 -0.2921620693149102
+D3 -0.3054877841833777
+D4 -0.5477922528730955
+D2 -1.0064923005657789
+
+tfidf
+query        : how much cancer risk can be avoided through lifestyle change ?
+SERP/Ranking :
+D5 0.26801328489127013
+D4 -0.05103019545272007
+D3 -0.32451168429166327
+D2 -0.6718226138608562
+D1 -0.9974516216414526
+
+Dgn Letor lebih bagus daripada Tfidf (tanpa Letor). 
+Hal itu dikarenakan, 
+ketika hanya dengan Tfidf, itu hanya menggunakan koleksi dokumen saja atau traditional supervised learning
+ketika ditambah dengan Letor, itu menggunakan training data atau machine learning modern yang lebih akurat.
+
+Modern web search, tidak hanya sekedar merecord tumpukan dokumen, tetapi juga merecord feature dari bnyk sumber,
+seperti dari video, click, image, query reformulation, dsb 
+(bukan hanya sekedar Log frequency of query word yg bisa lgsg dipelajari dgn traditional supervised learnin)
+sehingga ML modern dibutuhkan agar lebih akurat, yang belajar terlebih dahulu sebelum meranking (LETOR)

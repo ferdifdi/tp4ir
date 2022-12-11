@@ -1,15 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'home/base.html' %}
 
-{% load static %}
+{% block meta %}
+    <title>Medical Search</title>
+{% endblock meta %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'home/style.css' %}">
-    <title>Hello</title>
-</head>
-<body>
-    <h1>Hello World</h1>
-</body>
-</html>
+{% block content %}
+
+    <div class="home">
+
+        <form action="{% url 'home:index' %}" method="get">
+            <div class="mb-3">
+                <h1 class="text-center">Medical Search</h1>
+                <input type="text" placeholder="Search Your Query" class="form-control" id="search_box" name="search_box", value="{{ query|default_if_none:'' }}">
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+
+        {% if flag == -1 %} 
+        {% else %} 
+            {% if flag == 0 %}        
+                <p>Result: {{ lenResult }} doc(s),  total time: {{ totalTime }}</p>
+                <h3 class="text-center">Sorry, there is no result. Please try another query.</h3>
+            {% else %}  
+                <p>Result: {{ lenResult }} doc(s),  total time: {{ totalTime }}</p>
+                <hr>
+                {% for doc_id, text in result.items %}
+                    <a href="{% url 'home:detail' doc_id %}">{{ doc_id }}.txt</a>
+                    <br>
+                    {{ text|truncatechars:150 }}
+                    <br>
+                    <hr>
+                {% endfor %}
+            {% endif %}
+        {% endif %}
+
+    </div>
+{% endblock content %}
+
